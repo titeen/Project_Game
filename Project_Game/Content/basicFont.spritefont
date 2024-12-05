@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics">
+	<Asset Type="Graphics:FontDescription">
+		<FontName>Times New Roman</FontName>
+		<!-- Gebruik het systeemlettertype Arial -->
+		<Size>24</Size>
+		<!-- Kies de gewenste grootte -->
+		<Spacing>0</Spacing>
+		<Style>Regular</Style>
+		<CharacterRegions>
+			<CharacterRegion>
+				<Start> </Start>
+				<End>~</End>
+			</CharacterRegion>
+		</CharacterRegions>
+	</Asset>
+</XnaContent>

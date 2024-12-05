@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project_Game.UI;
 
 namespace Project_Game
 {
@@ -8,6 +9,7 @@ namespace Project_Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Screen _currentScreen;
 
         public Game1()
         {
@@ -18,8 +20,6 @@ namespace Project_Game
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -27,26 +27,30 @@ namespace Project_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Begin met het StartScreen
+            _currentScreen = new UI.StartScreen(this); 
+            _currentScreen.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
-
+            _currentScreen.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            _currentScreen.Draw(gameTime);
             base.Draw(gameTime);
         }
+
+        // Verander het scherm
+        public void ChangeScreen(Screen newScreen)
+        {
+            _currentScreen = newScreen;
+            _currentScreen.LoadContent();
+        }
+
+        public SpriteBatch SpriteBatch => _spriteBatch; // Exposeer SpriteBatch voor tekeningen
     }
 }
