@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Project_Game.Manager;
 using Project_Game.Levels;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project_Game.UI
 {
@@ -28,17 +29,17 @@ namespace Project_Game.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (_game.InputManager.IsKeyDown(Keys.Escape))
                 _game.Exit();
 
             // Menu navigatie met Left en Right keys
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) && selectedOption > 0)
+            if (_game.InputManager.IsKeyDown(Keys.Left) && selectedOption > 0)
                 selectedOption--;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) && selectedOption < options.Length - 1)
+            if (_game.InputManager.IsKeyDown(Keys.Right) && selectedOption < options.Length - 1)
                 selectedOption++;
 
             // Optie selecteren met Enter
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (_game.InputManager.IsKeyDown(Keys.Enter))
             {
                 if (selectedOption == 0)
                     _game.ChangeScreen(new Level1(_game));
